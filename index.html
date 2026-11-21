@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#050505">
+  <meta name="description" content="LUXION: panel personal de rutina, entrenamiento, cuidado y estudio.">
+  <title>LUXION — Disciplina diaria</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#inicio" aria-label="LUXION inicio">
+        <span class="brand-mark">L</span>
+        <span><strong>LUXION</strong><small>PROTOCOLO DE TRANSFORMACIÓN</small></span>
+      </a>
+      <div class="top-actions">
+        <span class="connection-pill" id="connectionStatus"><i></i> <span>Comprobando</span></span>
+        <button class="icon-button" id="installButton" type="button" hidden>Instalar</button>
+      </div>
+    </header>
+    <div class="sticky-rules" aria-label="Reglas permanentes">
+      <span>22:00 · DORMIR</span><i></i><span>SIN REDES</span><i></i><span>COMIDA REAL</span>
+    </div>
+
+    <main>
+      <section class="view active" id="view-inicio" data-view="inicio">
+        <div class="hero-grid">
+          <div class="panel hero-panel">
+            <div class="eyebrow">SISTEMA ACTIVO · CICLO 2026—2027</div>
+            <h1>La disciplina no<br><span>se negocia.</span></h1>
+            <p class="hero-copy">Un día a la vez. Ejecuta el siguiente bloque, registra tus avances y protege tu descanso.</p>
+            <div class="countdown-wrap">
+              <div class="countdown-label">TIEMPO HASTA EL 1 DE MARZO DE 2027</div>
+              <div class="countdown" id="countdown">
+                <div><strong>—</strong><small>DÍAS</small></div><div><strong>—</strong><small>HORAS</small></div><div><strong>—</strong><small>MIN</small></div>
+              </div>
+            </div>
+          </div>
+          <div class="panel luxion-panel">
+            <div class="panel-heading"><span class="neon-tag yellow">LUXION / CONTROL</span><span class="pulse-dot"></span></div>
+            <div class="luxion-face">L<span>X</span></div>
+            <p class="luxion-message" id="luxionMessage">No esperes motivación. Empieza por la siguiente acción.</p>
+            <div class="luxion-actions">
+              <button class="button button-yellow" id="enableAlerts" type="button">Activar alertas</button>
+              <button class="button button-quiet" id="wakeButton" type="button">Mantener pantalla encendida: OFF</button>
+            </div>
+            <p class="micro-note" id="alertStatus">Las alertas son fiables mientras la app permanece abierta y visible.</p>
+          </div>
+        </div>
+
+        <div class="panel rules-panel">
+          <div class="panel-heading"><div><span class="eyebrow red-text">REGLAS DE ORO</span><h2>Tres prohibiciones absolutas</h2></div><span class="neon-tag red">SIN EXCUSAS</span></div>
+          <div class="rules-grid">
+            <div class="rule"><b>01</b><span>Apagar pantallas y dormir a las <strong>10:00 p. m.</strong></span></div>
+            <div class="rule"><b>02</b><span>Prohibido perder tiempo en <strong>redes sociales</strong>.</span></div>
+            <div class="rule"><b>03</b><span>Evitar la <strong>comida chatarra</strong>; priorizar comida casera.</span></div>
+          </div>
+          <button class="button button-danger" id="reportViolation" type="button">Reportar infracción</button>
+          <p class="micro-note">Una infracción genera revisión y un bloque de reparación. No se usan castigos físicos, ayunos ni reducción del sueño.</p>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="panel schedule-panel">
+            <div class="panel-heading"><div><span class="eyebrow">EJECUCIÓN DEL DÍA</span><h2>Horario estructurado</h2></div><span class="date-chip" id="todayLabel">—</span></div>
+            <div class="current-block" id="currentBlock"><div class="current-block-copy"><span class="eyebrow">BLOQUE ACTUAL</span><strong>Preparando horario…</strong><small>El reloj se actualizará automáticamente.</small></div><div class="timer-readout" id="blockTimer">--:--:--</div></div>
+            <div class="progress-line"><span id="dailyProgressBar"></span></div>
+            <div class="progress-caption"><span id="dailyProgressText">0 de 0 tareas</span><strong id="dailyPercent">0%</strong></div>
+            <div class="task-list" id="dailyTasks"></div>
+          </div>
+          <div class="side-stack">
+            <div class="panel streak-panel"><span class="eyebrow">RACHA ACTUAL</span><div class="big-number" id="streakValue">0<span> días</span></div><p id="streakMessage">La racha empieza con el primer día completo.</p><div class="mini-stats"><div><strong id="penaltiesOpen">0</strong><small>PENDIENTES</small></div><div><strong id="penaltiesDone">0</strong><small>SUPERADAS</small></div></div></div>
+            <div class="panel emergency-panel"><div class="panel-heading"><span class="eyebrow">PROTOCOLO EXCEPCIONAL</span><span class="neon-tag blue">USO LIMITADO</span></div><h3>Jornada laboral / emergencia</h3><p>Para trabajo imprevisto real. Conserva cuidado facial, repaso breve y movilidad; el resto se pausa sin penalización.</p><div class="emergency-count"><strong id="emergencyCount">4</strong><span> usos disponibles este mes</span></div><button class="button button-outline" id="emergencyButton" type="button">Activar para hoy</button><p class="micro-note" id="emergencyStatus">Máximo 4 usos por mes.</p></div>
+          </div>
+        </div>
+
+        <div class="panel backup-panel">
+          <div><span class="eyebrow">DATOS Y SEGURIDAD</span><h2>Tu progreso se guarda en este dispositivo</h2><p>La copia local funciona sin internet. Drive se actualiza cuando hay conexión y la app puede ejecutarse.</p></div>
+          <div class="backup-actions"><button class="button button-outline" id="downloadBackup" type="button">Descargar copia</button><label class="button button-quiet file-label">Restaurar copia<input id="restoreFile" type="file" accept="application/json,.json"></label><button class="button button-blue" id="openDriveSettings" type="button">Configurar Google Drive</button></div>
+          <p class="micro-note" id="backupStatus">Copia de Drive no configurada.</p>
+        </div>
+      </section>
+
+      <section class="view" id="view-fisico" data-view="fisico">
+        <div class="page-heading"><div><span class="eyebrow blue-text">PILAR 01 / RENDIMIENTO</span><h1>Cambio físico</h1><p>Fuerza útil, potencia para fútbol y recuperación planificada.</p></div><div class="stat-chip"><strong>60 / 40</strong><small>FUERZA · CONDICIÓN</small></div></div>
+        <div class="panel notice-panel"><strong>Perfil de referencia:</strong> 18 años · 60–61 kg · 1.69 m. <strong>Regla de entrenamiento:</strong> la constancia gana a la destrucción. No dupliques repeticiones por fallar. Detén la sesión ante dolor agudo, mareo o falta de aire inusual. Las mancuernas caseras deben estar firmes, sin grietas ni mangos flojos.</div>
+        <div class="panel"><div class="panel-heading"><div><span class="eyebrow">PLAN SEMANAL</span><h2>Sesión principal · 6:00 a. m.</h2></div><span class="neon-tag blue" id="workoutDayTag">HOY</span></div><div class="workout-card" id="morningWorkout"></div></div>
+        <div class="panel"><div class="panel-heading"><div><span class="eyebrow">RECUPERACIÓN Y TÉCNICA</span><h2>Bloque tarde · 7:30 p. m.</h2></div><span class="neon-tag cyan">SIN SOBRECARGA</span></div><div class="workout-card" id="eveningWorkout"></div></div>
+        <div class="two-col">
+          <div class="panel water-panel"><div class="panel-heading"><div><span class="eyebrow">HIDRATACIÓN</span><h2>Registro de agua</h2></div><span class="water-symbol">◉</span></div><div class="water-total"><strong id="waterLiters">0.0</strong><span>litros registrados</span></div><div class="water-controls"><button class="button button-outline" id="removeWater" type="button">− 1 vaso</button><button class="button button-blue" id="addWater" type="button">+ 1 vaso · 250 ml</button></div><div class="water-cups" id="waterCups"></div><p class="micro-note">Guía inicial orientativa. Ajusta por calor, sudor, tamaño corporal y sed; no fuerces litros ni bebas en exceso.</p></div>
+          <div class="panel nutrition-panel"><span class="eyebrow">NUTRICIÓN REALISTA</span><h2>Come lo que hay en casa, equilibrándolo</h2><ul class="simple-list"><li>En el almuerzo y cena: incluye una fuente de proteína (huevo, pollo, pescado, lácteos, menestras).</li><li>Acompaña con verduras o fruta y una porción de arroz, papa, quinua, avena, pan o fideos.</li><li>No elimines carbohidratos: son combustible para estudiar y entrenar.</li><li>Sirve una porción razonable; come despacio y repite según hambre real.</li><li>Reduce gaseosas, golosinas y frituras frecuentes sin convertir la comida en castigo.</li></ul><p class="micro-note">Para 60–61 kg, un rango deportivo orientativo de proteína es aproximadamente 84–122 g al día, si no hay indicación médica distinta. No necesitas suplementos obligatorios.</p></div>
+        </div>
+      </section>
+
+      <section class="view" id="view-rostro" data-view="rostro">
+        <div class="page-heading"><div><span class="eyebrow pink-text">PILAR 02 / CUIDADO PERSONAL</span><h1>Rostro y apariencia</h1><p>Rutina sencilla y constante. Protege primero; no irrites la piel buscando cambios rápidos.</p></div><div class="stat-chip pink-chip"><strong>AM / PM</strong><small>RUTINA DIARIA</small></div></div>
+        <div class="two-col">
+          <div class="panel face-card"><div class="panel-heading"><div><span class="eyebrow pink-text">05:30 A. M.</span><h2>Rutina de mañana</h2></div><span class="neon-tag pink">AM</span></div><ol class="step-list"><li><span>01</span><div><strong>Limpieza suave</strong><small>Limpiador CeraVe. Si deja tirantez o reseca, reduce la limpieza a la noche o cambia a uno más suave.</small></div></li><li><span>02</span><div><strong>Hidratación</strong><small>Crema Aclarant Azul en capa fina si no irrita. Comprueba ingredientes y realiza prueba en una zona pequeña.</small></div></li><li><span>03</span><div><strong>Protector solar</strong><small>FPS 30 o superior, amplio espectro. Reaplica cada 2 horas al estar al aire libre y después de sudar.</small></div></li></ol><button class="button button-pink" data-face-check="am" type="button">Marcar rutina AM completada</button></div>
+          <div class="panel face-card"><div class="panel-heading"><div><span class="eyebrow pink-text">08:30 P. M.</span><h2>Rutina de noche</h2></div><span class="neon-tag pink">PM</span></div><ol class="step-list"><li><span>01</span><div><strong>Limpieza suave</strong><small>Retira sudor, protector solar y suciedad sin frotar.</small></div></li><li><span>02</span><div><strong>Masaje suave + postura</strong><small>Manos limpias, presión ligera durante 2–3 minutos. No elimina grasa ni cambia la estructura mandibular; suspende si irrita o duele.</small></div></li><li><span>03</span><div><strong>Hidratación</strong><small>Aplica la crema si tu piel la tolera. Evita experimentar con varios productos a la vez.</small></div></li></ol><button class="button button-pink" data-face-check="pm" type="button">Marcar rutina PM completada</button></div>
+        </div>
+        <div class="panel"><div class="panel-heading"><div><span class="eyebrow">HIGIENE Y PRESENTACIÓN</span><h2>Checklist de cuidado integral</h2></div><span class="neon-tag yellow">RECORDATORIOS</span></div><div class="care-grid" id="careChecklist"></div><p class="micro-note">Cambia funda y toalla facial cada 3–4 días, antes si se ensucian o quedan húmedas. El arreglo de cabello/cejas/barba es semanal y natural; no es necesario depilar en exceso.</p></div>
+        <div class="panel skin-note"><strong>Nota dermatológica:</strong> esta rutina no sustituye un diagnóstico. Si el acné es doloroso, deja cicatrices, empeora o las manchas cambian, consulta a un profesional. El protector solar ayuda a prevenir que las manchas se oscurezcan; los masajes no afinan la mandíbula de forma permanente.</div>
+      </section>
+
+      <section class="view" id="view-estudio" data-view="estudio">
+        <div class="page-heading"><div><span class="eyebrow cyan-text">PILAR 03 / ADMISIÓN</span><h1>Estudio para ingeniería</h1><p>Más recuperación activa para teoría y memoria; matemáticas se mantiene con práctica frecuente.</p></div><div class="stat-chip cyan-chip"><strong>07:45—12:00</strong><small>BLOQUE MAÑANA</small></div></div>
+        <div class="panel study-method"><div><span class="eyebrow cyan-text">MÉTODO LUXION</span><h2>Estudia para recordar, no solo para leer</h2></div><div class="method-grid"><div><b>01 · Recuperación activa</b><p>Cierra el cuaderno y responde de memoria. Después comprueba y corrige.</p></div><div><b>02 · Repetición espaciada</b><p>Revisa el tema el mismo día, al día siguiente y varios días después.</p></div><div><b>03 · Matemáticas</b><p>Resuelve problemas a diario en bloques cortos y registra errores.</p></div></div></div>
+        <div class="two-col study-columns"><div class="panel"><div class="panel-heading"><div><span class="eyebrow">TEMARIO INTERACTIVO</span><h2>Cursos y temas</h2></div><span class="neon-tag cyan" id="topicProgress">0% DOMINADO</span></div><div id="syllabusList" class="syllabus-list"></div></div>
+          <div class="panel"><div class="panel-heading"><div><span class="eyebrow">DOMINGOS</span><h2>Simulacros de admisión</h2></div><span class="neon-tag blue">CRONÓMETRO</span></div><p class="micro-note">Usa el tiempo real que corresponda a tu examen de admisión. La duración inicial es editable.</p><label class="field-label" for="examMinutes">Duración del simulacro (minutos)</label><input class="text-input" id="examMinutes" type="number" min="15" max="300" value="180"><div class="exam-clock" id="examClock">03:00:00</div><div class="button-row"><button class="button button-blue" id="startExam" type="button">Iniciar</button><button class="button button-quiet" id="pauseExam" type="button">Pausar</button><button class="button button-outline" id="resetExam" type="button">Reiniciar</button></div><div class="score-form"><label class="field-label" for="examScore">Puntaje obtenido</label><div class="score-entry"><input class="text-input" id="examScore" type="number" min="0" max="1000" placeholder="Ej. 720"><button class="button button-pink" id="saveScore" type="button">Guardar</button></div></div><div class="score-chart-wrap"><div class="panel-heading"><h3>Evolución semanal</h3><span class="micro-note">Puntajes registrados</span></div><div id="scoreChart" class="score-chart"><p class="micro-note">Aún no hay puntajes. Guarda el primero después de un simulacro.</p></div></div></div>
+        </div>
+      </section>
+
+      <section class="view" id="view-progreso" data-view="progreso">
+        <div class="page-heading"><div><span class="eyebrow green-text">REGISTRO / CONSISTENCIA</span><h1>Progreso y cierre</h1><p>Un día se considera ganado cuando completas el 100% de las tareas esenciales registradas.</p></div><div class="stat-chip green-chip"><strong id="progressStreakHero">0 DÍAS</strong><small>RACHA VIGENTE</small></div></div>
+        <div class="metric-grid"><div class="panel metric-card"><span class="eyebrow">DÍAS GANADOS</span><strong id="wonDays">0</strong><small>100% completado</small></div><div class="panel metric-card"><span class="eyebrow">PENALIZACIONES SUPERADAS</span><strong id="resolvedPenalties">0</strong><small>Revisadas y cerradas</small></div><div class="panel metric-card"><span class="eyebrow">TEMAS DOMINADOS</span><strong id="masteredTopics">0</strong><small>Del temario</small></div></div>
+        <div class="panel"><div class="panel-heading"><div><span class="eyebrow">CALENDARIO DE CONSTANCIA</span><h2>Últimos 35 días</h2></div><div class="calendar-legend"><span><i class="legend-dot green"></i> Día ganado</span><span><i class="legend-dot red"></i> Incompleto</span></div></div><div class="calendar-grid" id="calendarGrid"></div><div class="calendar-foot"><span class="legend-dot muted"></span> Sin registro</div></div>
+        <div class="two-col"><div class="panel"><div class="panel-heading"><div><span class="eyebrow red-text">REPARACIÓN</span><h2>Penalizaciones pendientes</h2></div><span class="neon-tag red">SIN CASTIGOS FÍSICOS</span></div><div id="penaltyList" class="penalty-list"><p class="micro-note">No hay penalizaciones pendientes.</p></div></div>
+          <div class="panel"><div class="panel-heading"><div><span class="eyebrow">DIARIO NOCTURNO</span><h2>Cierre del sistema</h2></div><span class="neon-tag yellow" id="journalLock">BLOQUEADO</span></div><p class="micro-note" id="journalHint">Se desbloquea al completar las tareas del día o desde las 9:15 p. m.</p><label class="field-label" for="journalText">¿Qué salió bien? ¿Qué corregirás mañana?</label><textarea class="text-area" id="journalText" rows="5" placeholder="Escribe una reflexión breve…"></textarea><button class="button button-yellow" id="closeDay" type="button">Cerrar día y sincronizar</button><p class="micro-note" id="closeDayStatus">El cierre guarda el día en este dispositivo e intenta enviar una copia a Drive.</p></div></div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Navegación principal">
+      <button class="nav-item active" data-tab="inicio" type="button"><span>⌂</span><small>Inicio</small></button>
+      <button class="nav-item" data-tab="fisico" type="button"><span>↗</span><small>Físico</small></button>
+      <button class="nav-item" data-tab="rostro" type="button"><span>✧</span><small>Rostro</small></button>
+      <button class="nav-item" data-tab="estudio" type="button"><span>⌘</span><small>Estudio</small></button>
+      <button class="nav-item" data-tab="progreso" type="button"><span>◷</span><small>Progreso</small></button>
+    </nav>
+  </div>
+
+  <dialog id="driveDialog" class="modal">
+    <form method="dialog" class="modal-card" id="driveForm">
+      <button class="modal-close" value="cancel" aria-label="Cerrar">×</button>
+      <span class="eyebrow blue-text">COPIA DE SEGURIDAD</span><h2>Conectar Google Drive</h2>
+      <p>Primero crea el Apps Script siguiendo la guía incluida. Después pega aquí la dirección web que termina en <code>/exec</code>.</p>
+      <label class="field-label" for="driveUrl">Dirección del Apps Script</label><input class="text-input" id="driveUrl" type="url" placeholder="https://script.google.com/macros/s/.../exec">
+      <label class="field-label" for="driveKey">Clave privada compartida</label><input class="text-input" id="driveKey" type="password" placeholder="La clave que configuraste en Apps Script">
+      <p class="micro-note">La clave evita envíos casuales, pero no es una bóveda: no publiques la dirección ni compartas el proyecto. El respaldo contiene tu progreso personal.</p>
+      <div class="button-row"><button class="button button-blue" id="saveDriveConfig" value="default" type="button">Guardar configuración</button><button class="button button-quiet" value="cancel">Cancelar</button></div>
+    </form>
+  </dialog>
+  <dialog id="violationDialog" class="modal">
+    <form method="dialog" class="modal-card">
+      <button class="modal-close" value="cancel" aria-label="Cerrar">×</button><span class="eyebrow red-text">REPORTE DE INCUMPLIMIENTO</span><h2>Registra lo ocurrido</h2>
+      <label class="field-label" for="violationType">Regla afectada</label><select class="text-input" id="violationType"><option value="Pantallas después de las 10:00 p. m.">Trasnochar / pantallas tarde</option><option value="Redes sociales fuera del tiempo permitido.">Redes sociales</option><option value="Comida chatarra fuera del plan acordado.">Comida chatarra</option><option value="Tarea importante no completada.">Tarea incumplida</option></select>
+      <label class="field-label" for="violationNote">Qué pasó (opcional)</label><textarea class="text-area" id="violationNote" rows="3" placeholder="Describe el hecho sin excusas ni insultos hacia ti mismo."></textarea>
+      <div class="button-row"><button class="button button-danger" id="confirmViolation" value="default" type="button">Registrar y reparar</button><button class="button button-quiet" value="cancel">Cancelar</button></div>
+    </form>
+  </dialog>
+
+  <iframe name="luxionBackupFrame" id="luxionBackupFrame" title="Respuesta de respaldo" hidden></iframe>
+  <script src="app.js" defer></script>
+</body>
+</html>
